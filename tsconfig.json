@@ -1,5 +1,6 @@
 {
   "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -7,7 +8,10 @@
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
     "jsx": "react",
-    "skipLibCheck": true
-  },
-  "exclude": ["node_modules"]
+    "skipLibCheck": true,
+    "declaration": true,          // 开启 .d.ts 文件生成
+    "emitDeclarationOnly": true, // 只生成 .d.ts 文件（不生成 .js 文件）
+    "outDir": "./lib",           // 指定生成的输出目录
+    "rootDir": "./src"           // 指定源代码的根目录
+  }
 }

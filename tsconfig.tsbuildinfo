@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/internal/nativerncnetinfo.ts","./src/internal/nativeinterface.ts","./src/internal/nativemodule.ts","./src/internal/state.ts"],"version":"5.7.3"}

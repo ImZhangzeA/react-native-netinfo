@@ -31,8 +31,8 @@ import Logger from './Logger';
 
 class NetInfoState {
   type?: string
-  isConnected?: boolean
-  isInternetReachable?: boolean
+  isConnected: boolean
+  isInternetReachable: boolean
   isWifiEnabled?: boolean
   details?: object
 }
@@ -73,6 +73,7 @@ export class NetInfoTurboModule extends TurboModule {
       try {
         const events = await this.createConnectionEvent()
         Logger.info('events,' + JSON.stringify(events));
+
         resolve(events)
       } catch (e) {
         reject(e)
@@ -138,7 +139,10 @@ export class NetInfoTurboModule extends TurboModule {
 
   async createConnectionEvent(): Promise<NetInfoState> {
     //判断wifi使能
-    const event: NetInfoState = {}
+    const event: NetInfoState = {
+      isConnected:false,
+      isInternetReachable: false
+    }
     try {
       event.isWifiEnabled = wifiManager.isWifiActive()
     } catch (error) {
@@ -173,7 +177,7 @@ export class NetInfoTurboModule extends TurboModule {
             break;
         }
       } //判断是否可访问internet
-      event.isInternetReachable = netCapabilities.networkCap.indexOf(16) != -1
+      event.isInternetReachable = netCapabilities.networkCap.indexOf(16) != -1 || false;
       // if (netCapabilities.networkCap.length == 1) {
       //    event.isInternetReachable = netCapabilities.networkCap[0] == 12
       // }
